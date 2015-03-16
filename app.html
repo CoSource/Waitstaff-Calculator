@@ -37,35 +37,31 @@
       <div class="row">
         <div class="col-md-6" ng-controller="mealDetailsController">
 			<h3>Enter the Meal Details</h3>
-            <form name="formMealDetails" novalidate ng-submit="submit()">
-			    <p><label for="base-meal-price">Base Meal Price: $</label><input type="text" name="base-meal-price" ng-model="baseMealPrice" ng-pattern="/^[0-9]{1,7}$/" required /></p>
-			    <p><label for="tax-rate">Tax Rate: %</label><input type="text" name="tax-rate" ng-model="taxRate" ng-pattern="/^[0-9]{1,7}$/" required /></p>
-                <p><label for="tip-percentage">Tip Percentage: %</label><input type="text" name="tip-percentage" ng-model="tipPercentage" ng-pattern="/^[0-9]{1,7}$/" required  /></p>
-                <input type="submit" value="submit" /><button  ng-click="cancel()">Cancel</button>
-                <span class="error" ng-if="formMealDetails.$submitted && formMealDetails.baseMealPrice.$error.required">Base meal price is required</span>
-                <span class="error" ng-if="formMealDetails.$submitted && formMealDetails.baseMealPrice.$error.pattern">The base meal price must be numeric</span>
-                <span class="error" ng-if="formMealDetails.$submitted && formMealDetails.taxRate.$error.required">Tax rate is required</span>
-                <span class="error" ng-if="formMealDetails.$submitted && formMealDetails.taxRate.$error.pattern">The tax rate must be numeric</span>
-                <span class="error" ng-if="formMealDetails.$submitted && formMealDetails.tipPercentage.$error.required">Tip percentage is required</span>
-                <span class="error" ng-if="formMealDetails.$submitted && formMealDetails.tipPercentage.$error.pattern">The tip percentage number must be numeric</span>
-
+            <form name="formMealDetails" novalidate  ng-submit="submit()">
+			    <p><label for="base-meal-price">Base Meal Price: $</label><input type="number" name="base-meal-price" ng-model="meal.baseMealPrice" ng-pattern="/^[0-9]{1,7}$/" required /></p>
+			    <p><label for="tax-rate">Tax Rate: %</label><input type="number" name="tax-rate" ng-model="meal.taxRate" ng-pattern="/^[0-9]{1,7}$/" required /></p>
+                <p><label for="tip-percentage">Tip Percentage: %</label><input type="number" name="tip-percentage" ng-model="meal.tipPercentage" ng-pattern="/^[0-9]{1,7}$/" required  /></p>
+                <input type="submit" value="submit" /><button type="button" ng-click="cancel()">Cancel</button>
+                <span class="error" ng-if="formMealDetails.$submitted && formMealDetails.base-meal-price.$error.required">Base meal price is required</span>           
+                <span class="error" ng-if="formMealDetails.$submitted && formMealDetails.tax-rate.$error.required">Tax rate is required</span>
+                <span class="error" ng-if="formMealDetails.$submitted && formMealDetails.tip-percentage.$error.required">Tip percentage is required</span>
             </form>
 		</div>
         <div class="col-md-4" ng-controller="customerChargesController">
             <div class="row">
                 <div class="col-md-12">
                     <h3>Customer Charges</h3>
-                    <p>Subtotal <span name="subtotal" ng-model="subtotal">0.00</span></p>
-                    <p>Tip <span name="tip" ng-model="tip">0.00</span></p>
-                    <p>Total <span name="total" ng-model="total">0.00</span></p>
+                    <p>Subtotal {{customerCharges.subtotal}}</p>
+                    <p>Tip {{customerCharges.tip}}</p>
+                    <p>Total {{customerCharges.total}}</p>
                 </div>
             </div>
              <div class="row">
                 <div class="col-md-12" ng-controller="earningsController">
                     <h3>My Earnings Info</h3>
-                    <p>Tip Total <span name="tip-total" ng-model="tipTotal">0.00</span></p>
-                    <p>Meal Count <span name="meal-count" ng-model="mealCount">0.00</span></p>
-                    <p>Average Tip Per Meal <span name="average-tip-per-meal" ng-model="averageTipPerMeal">0.00</span></p>
+                    <p>Tip Total {{earnings.tipTotal}}</p>
+                    <p>Meal Count {{earnings.mealCount}}</p>
+                    <p>Average Tip Per Meal {{earnings.averageTipPerMeal}}</p>
                 </div>
             </div>
         </div>
